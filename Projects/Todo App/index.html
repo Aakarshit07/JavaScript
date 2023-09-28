@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- https://gg5jrf.csb.app/Interview-Challenge/index.html -->
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header id="header">
+      <!-- Hearing -->
+      <h1 class="heading">TODO</h1>
+      <h3 id="sub-heading"></h3>
+    </header>
+
+    <!-- Main CONTENT CONTAINER -->
+    <section id="main">
+      <!-- Sub-Hero-Form Container  -->
+      <section id="sub-sec1" class="sub-sec">
+        <form action="">
+          <div class="form-content">
+            <!-- <input id="form-input todo-input" type="text" placeholder="New To do.." /> -->
+            <input id="todo-input" class="form-input" type="text" placeholder="New To do.." />
+
+            <button id="btn" >+</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Sub-hero- Delete TODO container -->
+      <section id="sub-sec2" class="sub-sec">
+        <button class="delete-btn">Clear All</button>
+      </section>
+
+      <!-- ToDo List  Container -->
+      <section id="sub-sec3" class="sub-sec">
+        <ul id="todo-list" class="list-group border">
+
+          <div class="todo">
+            <li class="list-group-item p-3">
+              <input class="form-check-input me-1" id="todo-1" type="checkbox" />
+              <label class="form-check-label" for="todo-1">
+                Complete QTripDynamic
+              </label>
+            </li>
+          </div>
+            
+          <div class="todo">
+          <li class="list-group-item p-3">
+            <input class="form-check-input me-1" id="todo-2" type="checkbox" />
+            <label class="form-check-label" for="todo-2">
+              Complete FE-2 Challenge
+            </label>
+          </li>
+        </div>
+
+        </ul>
+
+    </section>
+    <script src="./script.js"></script>
+  </body>
+</html>
