@@ -12,12 +12,15 @@ const formattedDate = new Date().toLocaleDateString("en-US", {
 subHeading.textContent = formattedDate;
 // console.log(subHeading);
 
+const addedItems = new Set();
+
 submitButton.addEventListener("click", function (event) {
   event.preventDefault();
 
-  const todoInput = document.getElementById("todo-input").value;
+  const todoInput = document.getElementById("todo-input").value.trim();
 
-  if (todoInput.trim() !== "") {
+  if (todoInput !== "" && !addedItems.has(todoInput)) {
+    addedItems.add(todoInput);
     const listItem = document.createElement("div");
     listItem.className = "todo";
     listItem.innerHTML = `
@@ -38,6 +41,7 @@ function clearAll() {
   while (list.firstChild) {
     list.removeChild(list.firstChild);
   }
+  addedItems.clear();
 }
 
 deletebutton.addEventListener("click", function (event) {
