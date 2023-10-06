@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+.main-container{
+    position: relative;
+    top: 15rem;
+}
+
+.btn {
+    height: 4rem;
+    width: 5rem;
+    border: 2px solid;
+}
+
+#lightblue {
+    background: lightblue;
+}
+
+#lightgreen {
+
+    background: lightgreen;
+}
+
+#orangered {
+
+    background: orangered;
+}
+
+#cyan{
+
+    background: cyan;
+}
+
+.color-switch{
+    margin-top: 2rem;
+    border: 1px solid rgba(244, 242, 242, 0.5);
+    border-radius: 10px;
+    width: 18rem;
+    height: 5rem;
+    background-color: rgba(216, 215, 215, 0.5);
+    text-align: center;
+    
+}
+.color-switch h1 {
+    margin-top: 20px;
+    text-align: center;
+
+}
+
