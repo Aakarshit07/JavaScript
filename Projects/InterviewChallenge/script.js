@@ -1,25 +1,23 @@
 let searchInput = document.querySelector("#search");
 let mainBox = document.querySelector("#main");
 
-
 class User {
-  constructor(name, bio, avatar_url, followers, following, public_repos, twitter_username, location) {
-    this.name = name, 
-    this.bio = bio, 
-    this.avatar_url = avatar_url, 
-    this.followers = followers, 
-    this.following = following, 
-    this.public_repos = public_repos, 
-    this.twitter_username = twitter_username, 
-    this.location = location
+  static async getUserDetails(userName) {
+    try {
+      let response = await fetch(`https://api.github.com/users/${userName}`);
+      if (response.ok) {
+        let data = await response.json();
+        console.log(data);
+        User.createUserCard(data);
+      } else {
+        console.error("User not found");
+      }
+    } catch (error) {
+      console.error("Error fetching data: " + error);
+    }
   }
-  async getUserDetails(userName) {
-    let response = await fetch(`https://api.github.com/users/${userName}`);
-    let data = await response.json();
-    console.log(data);
-    this.createUserCard(data); 
-  }
-  createUserCard({name, bio, avatar_url, followers, following, public_repos, twitter_username, location}) {
+
+  static createUserCard({name, bio, avatar_url, followers, following, public_repos, twitter_username, location}) {
     let cardContainer = document.getElementById("card-container")
     let contentCard = ` 
     <div class="rounded-circle w-25">
@@ -51,6 +49,6 @@ class User {
 searchInput.addEventListener("input", (event) => {
   event.preventDefault();
   let userName = event.target.value;
-  let user = new User.getUserDetails(userName);
+  User.getUserDetails(userName);
 });
 
