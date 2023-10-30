@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            color: white;
+        }
+        #hero{
+            display: flex;
+            padding: 20px;
+            margin: 25px;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgb(34, 29, 33);
+            border-radius: 20px;
+
+        }
+
+        #img{
+            width: 15%;
+            height: 20%;
+        }
+
+        #followers{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 20px;
+            padding-left: 5px;
+            margin-left: 8px;
+            margin-right: 20px;
+        }
+
+        #api-btn{
+            border: 1px Solid greay;
+            margin-left: 49%;
+            margin-right: 49%;
+            border-radius: 6px;
+            width: 6rem;
+            height: 3rem;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 
+    The full list of the readyState values is documented at 
+    XMLHTTPRequest.readyState and is as follows:
+    0 (uninitialized) or (request not initialized)
+    1 (loading) or (server connection established)
+    2 (loaded) or (request received)
+    3 (interactive) or (processing request)
+    4 (complete) or (request finished and response is ready) 
+    -->
+
+    <div id="hero">
+        <h1>User Profile Card</h1>
+        <div id="img">
+
+        </div>
+        <div id="followers">
+            
+        </div>
+    </div>
+    <button id="api-btn">API Request</button>
+
+    <script>
+
+        let img = document.getElementById("img");
+        let followers = document.getElementById("followers");
+        let button = document.getElementById("api-btn");
+
+        let dataRendered = false;
+
+        button.addEventListener('click', (event) => {
+
+            // Check if data has already been rendered
+            if (dataRendered) {
+                return; // Exit the function and don't re-render
+            }
+
+
+
+            const requestUrl = 'https://api.github.com/users/aakarshit07'
+            const xhr = new XMLHttpRequest(); // creates an object to send or recieved data.
+            xhr.open('GET', requestUrl); //initialize and configure the API request 
+            
+            // xhr.onreadystatechange helps to track the readyState of our request.
+            xhr.onreadystatechange = function() {
+                console.log(xhr.readyState); // give the state of request.
+                
+                if(xhr.readyState === 4) { // we can also utlize these state that when it finish the API request to perform certain tasks.
+                    
+                    //here we recieve a response and to points to this context we use this.<responseVariableName>
+                    const data = JSON.parse(this.responseText) //Converting the API Response From String to JSON, and Storing Respone From API Request
+                    console.log(typeof data); // object
+                    
+                    //creating img tag and pushing the image url
+                    let image = document.createElement("img");
+                    image.src = data.avatar_url
+                    
+                    //Adding followers.
+                    let heading  = `<h1>Followers: ${data.followers}</h1>` 
+                    let totalRepos  = `<h1>Followers: ${data.public_repos}</h1>` 
+
+
+                    //Adding to DOM
+                    img.appendChild(image);
+                    followers.innerHTML = heading;
+                    followers.innerHTML += totalRepos;    
+                    console.log(img);
+                    console.log(followers); 
+
+                    dataRendered = true;
+                    
+                }
+            }
+            
+            xhr.send() // TO Actually send the API request 
+        });
+
+        
+        
+    </script>
+</body>
+</html>
